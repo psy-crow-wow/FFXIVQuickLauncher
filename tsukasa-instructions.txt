@@ -1,0 +1,20 @@
+1. Download the required tools:
+  1.1 Git: https://git-scm.com/download/win
+  1.2 Nuget: https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+  1.3 Visual Studio Build Tools: https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=buildtools&rel=16
+2. Install Git and make sure you can call it from a regular command prompt, this should be the default behaviour if not changed during the setup.
+3. Put the nuget executable to a location you can quickly access from the command prompt.
+4. Start the Visual Studio Build Tools setup:
+   4.1 Select ".NET Desktop-Buildtools" from the Workloads tab.
+   4.2 Select ".NET Framework 4.7.2 developer pack" (under the .NET tree entry) from the Components tab.
+   4.3 Install the components
+5. Clone FFXIVQuickLauncher to a directory:
+   `$> git clone https://github.com/goatcorp/FFXIVQuickLauncher.git`
+6. Navigate to the `XIVLauncher/Game` subdirectory in the repository you just cloned and replace the `NativeAclFix.cs` with the copy pinned in this channel.
+7. Open a Developer Command Prompt for VS 2019 from the start menu and navigate to the FFXIVQuickLauncher directory you just cloned.
+   7.1 Restore the packages via nuget:
+   `$> <PATH TO NUGET>\nuget.exe restore`
+   7.2 Compile the launcher from the Developer Command Prompt:
+   `$> msbuild XIVLauncher.sln /t:Build /p:Configuration=ReleaseNoUpdate`
+   7.3 The compiled version with all it's dependencies can be found in the "bin" directory in the root of the repository.
+8. For future updates, you can simply run a `git pull` on the repository root to update the launcher sources. Re-run the steps under 7. as necessary.
